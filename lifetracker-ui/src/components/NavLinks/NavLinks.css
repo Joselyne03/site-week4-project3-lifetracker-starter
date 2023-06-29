@@ -1,0 +1,17 @@
+.icons{
+    margin-left: 50px;
+    text-decoration: none;
+    color: #355070;
+    font-weight: bold;
+    font-size: 20px;
+}
+.icons:hover{
+    background-color: #355070;
+    color: whitesmoke;
+}
+.login{
+    border-radius: 10px;
+}
+.register{
+    border-radius: 10px;
+}

@@ -1,3 +1,13 @@
-.Navbar {
+.navbar {
+  display: flex;
+  flex-direction: row;
   padding-top: 20px;
+  margin-left: 92px;
+  margin-right: 92px;
+  align-items: center;
+  justify-content: center;
+}
+.logo{
+  margin-right: 50px;
+
 }

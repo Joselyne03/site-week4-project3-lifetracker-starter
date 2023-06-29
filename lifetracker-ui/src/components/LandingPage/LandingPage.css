@@ -1,0 +1,27 @@
+.landing-page{
+    display: flex;
+    flex-direction: column;
+}
+.hero{
+    display: flex;
+    flex-direction: row; 
+    padding-left: 32px;
+    padding-right: 32px;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 100px;
+}
+.cta{
+    text-align: center;
+    font-size: 30px;
+    /* display: flex; */
+}
+.hero-img{
+    width: 50%;
+    border-radius: 10%;
+    /* display: flex; */
+}
+.title{
+    font-size: 100px;
+    font-weight: bold;
+}

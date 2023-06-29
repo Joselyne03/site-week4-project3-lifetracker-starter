@@ -1,8 +1,8 @@
-.App {
+.app {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 100vw;
   min-height: 100vh;
-  background: #f7fafc;
+  background: rgba(243, 228, 217, 0.867);
 }
