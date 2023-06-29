@@ -2,12 +2,13 @@ import './App.css'
 import * as React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import Navbar from "../Navbar/Navbar"
-import Home from "../Home/Home"
+//import Home from "../Home/Home"
 import LandingPage from '../LandingPage/LandingPage';
 import Register from '../Register/RegisterPage';
 import LoginPage from '../Login/LoginPage';
 import ActivityPage from '../ActivityPage/ActivityPage';
 import NutritionPage from '../NutritionPage/NutritionPage';
+import NotFound from '../NotFound/NotFound'
 
 //not sure if we need a home component
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path = '/login' element = {<LoginPage />} /> 
           <Route path = '/activity' element = {<ActivityPage />} /> 
           <Route path = '/nutrition/*' element = {<NutritionPage />} />  
+          <Route path = '/*' element = {<NotFound />} />
         
 
         </Routes>
@@ -36,6 +38,5 @@ function App() {
 
 export default App
 {/*
-          <Route path = '/*' element = {<NotFound />} />
 */}
           
