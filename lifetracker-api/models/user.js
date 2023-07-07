@@ -7,10 +7,10 @@ class User {
         const requireFields = ["email", "password"]
         requireFields.forEach((field) => {
             if(!credentials.hasOwnProperty(field)){
-                throw new UnauthorizedError(`Missing ${field} in the request body.`)
+                throw new BadRequestError(`Missing ${field} in the request body.`)
             }
         })
-        const user = await User.fetchUserbyEmail(credentials.email);
+        const user = await User.fetchUserByEmail(credentials.email);
         if(user){
           const isVaild = await bcrypt.compare(credentials.password, user.password);
           if(isVaild){
@@ -21,7 +21,7 @@ class User {
 
     }
     static async register (credentials){
-        const requireFields = ["email" , "username", "firstName", "lastName", "password", "password_confirmation"];
+        const requireFields = ["email" , "username", "first_name", "last_name", "password", "password_confirmation"];
         requireFields.forEach((field) => {
             if(!credentials.hasOwnProperty(field)){
                 throw new BadRequestError(`Missing ${field} in the request body`)
@@ -61,15 +61,17 @@ class User {
         
     }
     static async fetchUserByEmail (email){
+        console.log(email);
         if(!email){
             throw new BadRequestError('The email is not provided');
         }
         //the $1 is a query interpulation 
         const query = `SELECT * FROM users WHERE email = $1`
-        //we store the resulst in this variables
+        //we store the result in this variables
         const result = await db.query(query, [email.toLowerCase()])
         //then return it in rows
         const user = result.rows[0]
+        //console.log("THIS IS THE USER IN FETACH : " , user);
         return user;
     }
 

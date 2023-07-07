@@ -1,7 +1,7 @@
 require ("dotenv").config()
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001
-const SECERT_KEY = process.env.SECERT_KEY ;
+const SECRET_KEY = process.env.SECRET_KEY ;
 
 function getDatabaseUri(){
     const dbUser = process.env.DATABASE_USER || "postgres"
@@ -14,7 +14,8 @@ function getDatabaseUri(){
     //postgresql://<username>:<password>@<hostname>:<port>/<database-name> 
 }
 
-const BCRYPT_WORK_FACTOR = process.env.BCRYPT_WORK_FACTOR;
+const BCRYPT_WORK_FACTOR = 13;
+//process.env.BCRYPT_WORK_FACTOR;
 
 //console.log("process.env", Object.keys(process.env));
 console.log("lifetracker Config:");
@@ -26,5 +27,5 @@ module.exports = {
     PORT,
     getDatabaseUri,
     BCRYPT_WORK_FACTOR,
-    SECERT_KEY
+    SECRET_KEY
 }

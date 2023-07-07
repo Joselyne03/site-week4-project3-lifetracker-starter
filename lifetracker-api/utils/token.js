@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
-const {SECERT_KEY} = require("../config")
+const {SECRET_KEY} = require("../config")
 
-const generateToken = (data) => jwt.sign(data,SECERT_KEY, {expiresIn : "24h"});
+const generateToken = (data) => jwt.sign(data, SECRET_KEY, {expiresIn : "30d"});
 const createUserJwt = (user) => {
     const payload = {
         id: user.id,
@@ -11,7 +11,7 @@ const createUserJwt = (user) => {
 }
 const validateToken = (token) => {
     try{
-        const decode = jwt.vertify(token,SECERT_KEY);
+        const decode = jwt.verify(token,SECRET_KEY);
        return decode;
 
    }catch(err){

@@ -17,3 +17,7 @@
 .NutritionPage .button button {
   flex: 1;
 }
+.submit-nutrition{
+  font-size: 20px;
+    border-radius: 10px;
+}

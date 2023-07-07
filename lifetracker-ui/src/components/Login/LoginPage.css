@@ -1,0 +1,34 @@
+.loginForm{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center;
+   
+}
+.loginPage{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-input{
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 30px;
+    width: 100%;
+    background-color: transparent;
+}
+.buttonSubmission{
+    font-size: 30px;
+    /* width: 20%; */
+    border-radius: 10px;
+    
+}
+.inputHeader{
+    text-align: left;
+    font-size: 20px;
+}
+.login-Header{
+    font-size:50px;
+    text-align: center;
+}
