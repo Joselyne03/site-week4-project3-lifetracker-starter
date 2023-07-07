@@ -4,7 +4,7 @@ import "./NutritionCard.css"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 
-export default function NutritionCard({key,nutritionItem}) {
+export default function NutritionCard({nutritionItem}) {
 
     return (
         <div className="container"> 

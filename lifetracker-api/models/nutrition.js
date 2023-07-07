@@ -59,7 +59,6 @@ class Nutrition {
        //here we will fetch the list of nutrition from a user
        //user is determined by an id sent in the top
        //then we query all rows that share the same user_id
-       console.log(user_id)
         const query = `SELECT * FROM nutrition WHERE user_id = $1`
         const results = await db.query(query, [user_id])
         return results.rows;

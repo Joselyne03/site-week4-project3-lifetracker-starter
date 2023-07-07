@@ -2,50 +2,47 @@ import "./NutritionPage.css"
 import { useState,useEffect } from "react"
 import NutritionCard from "../NutritionCard/NutritionCard";
 
-export default function NutritionPage({ appState, nutritionEntry, user, listNutrition, nutrition }) {
+export default function NutritionPage({ appState, nutritionEntry, user, listNutritionhandeler, nutritionList }) {
     const [formNutrition, setFormNutrition] = useState(false)
-    console.log("FORM: " , nutrition);
+    const [nutritionArray,setNutritionArray] = useState(null);
     useEffect(() => {
-        listNutrition();
+        listNutritionhandeler();
     },[])
+    setNutritionArray(nutritionList)
+    console.log("FORM: " , nutritionArray);
+    let listOfItems = "";
     const [nutritionInfo, setNutritionInfo] = useState(
         { name: "", calories: "", imageUrl: "", category: null, quantity: "" });
-    const handleNutritionInput = (name, event) => {
-        setNutritionInfo((prevState) => ({ ...prevState, [name]: event }))
-    }
-
-    const userID =user.id; 
-    //console.log("IDDD : " , userID);
-    const handleSubmissionNutrition = (event) => {
-        event.preventDefault();
-        console.log("Nutrition Form is submitted!");
-        nutritionEntry(nutritionInfo.name,
-            nutritionInfo.calories,
-            nutritionInfo.imageUrl,
-            nutritionInfo.category,
-            nutritionInfo.quantity, 
-            userID);
-        setFormNutrition(false)
-    }
-    // if(nutrition !== undefined){
-    //     let listOfItems =  nutrition.map((item) => (
-    //         <div className="grid-card"> 
-    //             <NutritionCard 
-    //                 key = {item.id}
-    //                 nutritionItem = {item}
-    //                 /> 
-    //         </div>
+        const handleNutritionInput = (name, event) => {
+            setNutritionInfo((prevState) => ({ ...prevState, [name]: event }))
+        }
+        
+        const userID =user.id; 
+        //console.log("IDDD : " , userID);
+        const handleSubmissionNutrition = (event) => {
+            event.preventDefault();
+            console.log("Nutrition Form is submitted!");
+            nutritionEntry(nutritionInfo.name,
+                nutritionInfo.calories,
+                nutritionInfo.imageUrl,
+                nutritionInfo.category,
+                nutritionInfo.quantity, 
+                userID);
+                setFormNutrition(false)
+            }
+            // if(!nutrition){
+        
+            //     listOfItems =  <div>Loading...</div>
+            // }else{
+            //     listOfItems =  nutrition.map((item) => (
+            //         <div className="grid-card"> 
+            //         <NutritionCard 
+            //         nutritionItem = {item}
+            //         /> 
+            //         </div>
                 
-    //     ));
-    // }else {
-    //     if(listOfProducts === 0){
-    //         listOfProducts = 
-    //             <div className = "no-products">
-    //                 <h2>No items here</h2>
-    //             </div>
-            
-    //     }
-    // }
+            // )); }
+    
     return (
         <div className="Nutrition">
             {formNutrition ? (
@@ -103,7 +100,7 @@ export default function NutritionPage({ appState, nutritionEntry, user, listNutr
                                 <button className="submit-nutrition" type="submit">Save</button>
                             </form>
                             <div className="Nutrition-row">
-                                       rows here 
+                                       row
                             </div>
                         </div>
                     </div>

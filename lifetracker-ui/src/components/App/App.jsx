@@ -19,12 +19,11 @@ function App() {
   const [appState, setAppState] = useState({
     user: "",
     isAuthenticated: false,
-    nutrition: "",
     sleep: "",
     exercise: "",
   });
   const [user, setUser] = useState({})
-  const [nutrition,setNutrtion] = useState({});
+  const [nutritionList,setNutrtion] = useState(null);
   console.log("USER FROM APP: " , user);
   const [loginState, setLoginState] = useState(false);
 
@@ -135,13 +134,11 @@ function App() {
     }
 
   }
-  const listNutrition = async() => {
-    const token = localStorage.getItem("token");
+  const listNutritionhandeler = async() => {
     const response = await fetch(`http://localhost:3001/nutrition/${user.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        //"authorization": "Bearer " + token
       },
     });
     //data is returing the users value
@@ -149,7 +146,7 @@ function App() {
     //but it must have an await so it wont be rushed and just return a status code
     const data = await response.json();
     setNutrtion(data);
-    console.log("new user state: ", nutrition);
+    //console.log("new user state: ", );
 
   }
   const handelLogout = () => {
@@ -157,7 +154,7 @@ function App() {
     setLoginState(false);
     setAppState((prev) => ({ ...prev, isAuthenticated: false }));
   }
-  const [login, setLogin] = useState({ email: "", password: "" });
+  //const [login, setLogin] = useState({ email: "", password: "" });
   return (
     <div className='app'>
       <BrowserRouter>
@@ -168,7 +165,7 @@ function App() {
             <Route path='/register' element={<Register registerUser={registerUser} />} />
             <Route path='/login' element={<LoginPage loginUser={loginUser} loginState={loginState} />} />
             <Route path='/activity' element={<ActivityPage appState={appState.isAuthenticated} />} />
-            <Route path='/nutrition/*' element={loginState ? (<NutritionPage appState={appState.isAuthenticated} nutritionEntry={nutritionEntry} user={user} listNutrition={listNutrition} nutrition={nutrition}/>) : (<></>)} />
+            <Route path='/nutrition/*' element={loginState ? (<NutritionPage appState={appState.isAuthenticated} nutritionEntry={nutritionEntry} user={user} listNutritionhandeler={listNutritionhandeler} nutritionList={nutritionList}/>) : (<></>)} />
             <Route path='/*' element={<NotFound />} />
 
 
