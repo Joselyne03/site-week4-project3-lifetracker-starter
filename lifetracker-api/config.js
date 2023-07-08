@@ -15,9 +15,7 @@ function getDatabaseUri(){
 }
 
 const BCRYPT_WORK_FACTOR = 13;
-//process.env.BCRYPT_WORK_FACTOR;
 
-//console.log("process.env", Object.keys(process.env));
 console.log("lifetracker Config:");
 console.log("PORT:", PORT);
 console.log("The database URL: ", getDatabaseUri());

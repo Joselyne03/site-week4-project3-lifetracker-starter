@@ -8,8 +8,6 @@ router.get('/:id', async (req,res,next) => {
     //list all post 
     try{
         const id = req.params.id
-        //const id = res.locals.user.id
-        console.log('should be nutr: ', id)
         const nutrition = await Nutrition.listNutritionForUser(id);
         return res.status(200).json({nutrition})
     } catch(err) {
@@ -20,10 +18,6 @@ router.get('/:id', async (req,res,next) => {
 router.post('/',async(req,res,next) => {
     //create a new nutrition
     try{
-     //console.log(res.locals.user);
-       //const {user} = res.body;
-    //res.locals.user.email
-      
       const nutrition = await Nutrition.createNutrition({nutrition: req.body})
       return res.status(201).json({
         message : "Nutrtrion created!",

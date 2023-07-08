@@ -12,16 +12,12 @@ const app = express();
 
 app.use(cors()); // Enable CORS middleware to handle cross-origin requests
 app.use(express.json()); // Parse incoming requests with JSON payloads
-//app.use(morgan("tiny")); // Use Morgan middleware with 'dev' format for request logging
 //for every requestcheck if a token exist
 app.use(security.extractUserFromJwt);
 
 app.use("/auth", authRoutes);
 app.use("/nutrition", nutritionRoutes);
 
-// app.use((req,res,next) => {
-//     next(new NotFoundError())
-// })
 
 app.use((err,req,res,next)=> {
     const status = err.status || 500

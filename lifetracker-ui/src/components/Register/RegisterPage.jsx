@@ -66,7 +66,7 @@ export default function RegisterPage({registerUser}){
             placeholder="Username"/>
             <h1 className="inputHeader">Password:</h1>
             <input 
-            type="text" 
+            type="password" 
             className="form-input" 
             name="password"
             value = {registration.password} 
@@ -74,7 +74,7 @@ export default function RegisterPage({registerUser}){
             placeholder="Password"/>
             <h1 className="inputHeader">Confirm Password:</h1>
             <input 
-            type="text" 
+            type="password" 
             className="form-input" 
             name="passwordConfirm"
             value = {registration.passwordConfirm} 

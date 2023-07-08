@@ -21,22 +21,26 @@ By the end of this project you will be able to...
 
 ## Application Features
 
+## Demo Walk-Through
+![] (LifeTracker_ezgif.gif)
+
+
 ### Core Features
 
 - [x] **The Landing Page:** Display a large hero image and a brief blurb on what this application is about. *Note:* This is the only page that unauthenticated users should be able to view.
 - [x] **Registration Page:** A form that allows the user to sign up with their email, password, username, first name, and last name.
 - [x] **Login Page:** A form that allows users to login with email and password.
 - [ ] When a user first authenticates, they should be redirected to an authenticated view (i.e., the detailed activity page). When they sign out, all frontend data should be reset.
-- [ ] **The Nav Bar:** Implement customized views for users who are logged in vs not logged in.
+- [x] **The Nav Bar:** Implement customized views for users who are logged in vs not logged in.
   - [x] If the user is logged in, it should display a **Sign Out** button.
   - [x] If no user is logged in, it should display **Login** and **Register** buttons.
   - [x] Display a logo on the far left side, and contain links to the individual detailed activity pages.
 - [ ] Users should have the ability to track at least **one** type of activity (i.e., nutrition, exercise, sleep, etc.). Each activity should be tracked on separate pages.
-- [ ] **Detailed Activity Page:** Display and enter activities.
-  - [ ] Display a feed of all previously tracked activities.
-  - [ ] A form to enter relevant information (i.e., if tracking nutrition, the user can enter calories, timestamp, image, category, etc.).
-  - [ ] Each activity tracked is given a unique ID for easy lookup.
-- [ ] Deploy your website with Render. Check out our [Render Deployment Guide](https://courses.codepath.org/snippets/site/render_deployment_guide) for detailed instructions.
+- [x] **Detailed Activity Page:** Display and enter activities.
+  - [x] Display a feed of all previously tracked activities.
+  - [x] A form to enter relevant information (i.e., if tracking nutrition, the user can enter calories, timestamp, image, category, etc.).
+  - [x] Each activity tracked is given a unique ID for easy lookup.
+- [x] Deploy your website with Render. Check out our [Render Deployment Guide](https://courses.codepath.org/snippets/site/render_deployment_guide) for detailed instructions.
 
 ### Stretch Features
 
@@ -54,9 +58,9 @@ Implement any of the following features to improve the application:
 
 #### The `App` Component
 
-- [ ] Build the `App` component to:
-  - [ ] Be wrapped by an element with the class name of `app`
-  - [ ] Contain the routes for the app
+- [x] Build the `App` component to:
+  - [x] Be wrapped by an element with the class name of `app`
+  - [x] Contain the routes for the app
   - [x] Render the `Navbar` component on every route
   - [ ] Render a `BrowserRouter` component that contains a `Routes` component with the following routes:
     - [x] `/` - Render the `Landing` component
@@ -89,8 +93,8 @@ Implement any of the following features to improve the application:
 
 Update the `App` component to manage authentication state:
 
-- [ ] Create a state variable called `appState` with a function called `setAppState` to update that state.
-  - [ ] Initialize `appState` with an object containing properties like `user`, `isAuthenticated`, `nutrition`, `sleep`, and `exercise`.
+- [x] Create a state variable called `appState` with a function called `setAppState` to update that state.
+  - [x] Initialize `appState` with an object containing properties like `user`, `isAuthenticated`, `nutrition`, `sleep`, and `exercise`.
 - [ ] Implement a `useEffect` hook to fetch the user data.
   - [ ] Define an asynchronous function named `fetchUser` to fetch the user data.
     - [ ] Inside the `fetchUser` function, retrieve a token from `localStorage` using `localStorage.getItem("lifetracker_token")`
@@ -160,7 +164,7 @@ Update the `App` component to manage authentication state:
 
 #### Implement the `LoginPage` Component
 
-- [ ] Build the **`LoginPage`** component to:
+- [x] Build the **`LoginPage`** component to:
   - [ ] Render JSX that is wrapped by an element with the class name of `login-page`
   - [ ] Using either a custom hook, context, or manually set state, check to see if a user is already logged in
     - [ ] If the user is already logged in, redirect them to the `/activity` page.
@@ -168,7 +172,7 @@ Update the `App` component to manage authentication state:
 
 #### Implement the `RegistrationForm` Component
 
-- [ ] Build the **`RegistrationForm`** component to:
+- [x] Build the **`RegistrationForm`** component to:
   - [ ] Render JSX that is wrapped by an element with the class name of `registration-form`
   - [ ] Should render an input element for the following fields:
     - [ ] `email`
@@ -720,21 +724,3 @@ Here are the pieces of functionality that should be built out for the backend:
 
   <!-- here is the video to help out
   https://www.youtube.com/watch?v=f5MVSP27QA4&list=PLJm7_t7JnSjkaHcQHpPQ_WM_4FIh_8aPo&index=7 -->
-<!-- let existingToken = localStorage.getItem("token")
-    //console.log("token", {existingToken});
-    if (existingToken) {
-      const response = async () => {
-        let userInfo = await axios.post('http://localhost:3001/auth/me',{existingToken}, {headers:{
-          "Content-Type": "application/json"
-        } },
-        {body: JSON.stringify({})}
-        )
-        console.log(userInfo);
-        setAppState((prev) => ({ ...prev, user: {userInfo} }))
-        console.log(appState);
-      } 
-      response();
-    }
-    else {
-      console.log('no token exists')
-    } -->

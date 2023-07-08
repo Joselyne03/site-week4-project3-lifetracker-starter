@@ -2,13 +2,10 @@ const db = require('../db');
 const {BadRequestError,NotFoundError} =require("../utils/errors")
 
 class Nutrition {
-    //"name"`, `"category"`, `"calories"`, and `"image_url"`. The `quantity` field should default to `1`.
+   
     static async createNutrition ({nutrition}){
-
-         //console.log("user", user)
-        // console.log("nutrientation",nutrition)
         const requiredFields = ["name", "category", "calories", "image_url", "quantity","user_id"]
-        //quanitity
+       
         requiredFields.forEach(field => {
             if(!nutrition.hasOwnProperty(field)){
                 throw new BadRequestError(`Required field ${field} is missing`)
@@ -66,17 +63,3 @@ class Nutrition {
 
 }
 module.exports = Nutrition;
-// `
-// SELECT n.id,
-// n.name,
-// u.email AS "email",
-// n.category,
-// n.calories,
-// n.image_url AS "image_url",
-// n.user_id AS "user_id",
-// n.quantity,
-// n.created_at AS "created_at"
-// FROM nutrition AS n
-// JOIN users AS u ON u.id::text= n.user_id::text
-// ORDER BY n.created_at DESC
-// `

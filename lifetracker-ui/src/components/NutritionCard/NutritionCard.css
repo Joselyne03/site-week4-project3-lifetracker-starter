@@ -1,0 +1,58 @@
+.container {
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -.1;
+  }
+  
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    /* Change the opacity or color to adjust the darkness */
+  }
+  
+  .flex-container {
+    position: relative; /* Establish a new stacking context */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    color: white;
+    width:100%;
+
+    /* Add other flex properties as needed */
+  }
+  .top-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    
+  }
+  .small-cantainer{
+    display: flex;
+    flex-direction:row;
+    
+  }
+  .category{
+    justify-self: right;
+  }
+  .date{
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  .calories{
+    justify-content: right;
+
+  }
+  .quantity{
+    margin-right: 10px;
+  }

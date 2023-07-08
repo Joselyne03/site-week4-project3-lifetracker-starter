@@ -1,9 +1,8 @@
 import "./LoginPage.css"
 import { useState } from "react"
 
-export default function LoginPage({loginUser,loginState}){
+ function LoginPage({loginUser,loginState, errorCheck}){
     const [login, setLogin] = useState({email : "", password : ""});
-    //const [password, setPassword] = useState({password : ""});
     const handleLoginInput = (name,event) => {
         setLogin((prevState) => ({...prevState, [name] : event}))
         console.log({login})
@@ -13,13 +12,13 @@ export default function LoginPage({loginUser,loginState}){
         event.preventDefault();
         console.log("Form is subitted!");
         loginUser(login.email, login.password);
-        //should have a fucntion that takes in the info and passes to the db
     }
+   
     return (
         <div className="loginPage">
         {loginState ? (
         <>
-        <h1>Welcome! You are logged in!</h1>
+        <h1>Welcome!</h1>
         </>
         ): (
         <div>
@@ -41,7 +40,10 @@ export default function LoginPage({loginUser,loginState}){
             value = {login.password} 
             onChange={(event) => {handleLoginInput(event.currentTarget.name, event.currentTarget.value)}}
             placeholder="password"/>
-            <button className="buttonSubmission">login</button>
+            {errorCheck?<div>{errorCheck.message}</div>:null}          
+            {/* <div className="error statement"> Invaild username/password</div> */}
+            <br/>
+            <button className="buttonSubmission" to= "/">login</button>
             </form>
         </div>
              
@@ -51,3 +53,4 @@ export default function LoginPage({loginUser,loginState}){
     )
    
 }
+export default LoginPage;

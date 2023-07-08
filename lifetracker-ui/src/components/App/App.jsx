@@ -21,10 +21,11 @@ function App() {
     isAuthenticated: false,
     sleep: "",
     exercise: "",
-  });
+  })
+  const [error, setError] = useState(null);
   const [user, setUser] = useState({})
-  const [nutritionList,setNutrtion] = useState(null);
-  console.log("USER FROM APP: " , user);
+  const [nutritionList, setNutrtionList] = useState([]);
+  
   const [loginState, setLoginState] = useState(false);
 
   useEffect(() => {
@@ -34,7 +35,6 @@ function App() {
       if (token) {
         //will decode the token
         const decodedToken = jwtDecode(token);
-        console.log("THIS IS TOKEN ME" , token);
         if (decodedToken.exp * 1000 > Date.now()) {
           const response = await fetch("http://localhost:3001/auth/me", {
             method: "GET",
@@ -48,12 +48,10 @@ function App() {
           //but it must have an await so it wont be rushed and just return a status code
           const data = await response.json();
           setUser(data.user);
-          console.log("new user state: ", user);
           //since the user is logged in
           //the other components can now be available to the user
           setLoginState(true);
           setAppState((prev) => ({ ...prev, isAuthenticated: true }));
-          //console.log(appState);
         } else {
           //set the user to log out
           handelLogout();
@@ -61,7 +59,7 @@ function App() {
       }
     }
     checkLoggedIn();
-    
+
   }, [])
   //handles when the user registers and sends it to the BE
   const registerUser = async (email, username, first_name, last_name, password, password_confirmation) => {
@@ -77,7 +75,7 @@ function App() {
 
       if (response.ok) {
         setLoginState(true);
-        
+
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -101,8 +99,10 @@ function App() {
         localStorage.setItem("token", token);
         setLoginState(true);
         setUser(data.user)
+        console.error(null)
 
-        console.log("This is the data: " , user);
+      } else if (response.status === 500) {
+        setError(data.error);
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -123,10 +123,8 @@ function App() {
         body: JSON.stringify({ name, category, calories, image_url, quantity, user_id })
       });
       const data = await response.json();
-      //console.log(data);
+      console.log(data);
       if (response.ok) {
-        //setLoginState(true);
-        console.log("data", data);
       }
     } catch (error) {
       console.error("Error: ", error);
@@ -134,7 +132,7 @@ function App() {
     }
 
   }
-  const listNutritionhandeler = async() => {
+  const listNutritionhandeler = async () => {
     const response = await fetch(`http://localhost:3001/nutrition/${user.id}`, {
       method: "GET",
       headers: {
@@ -145,8 +143,8 @@ function App() {
     //response itself is a promise function that will return its proper response
     //but it must have an await so it wont be rushed and just return a status code
     const data = await response.json();
-    setNutrtion(data);
-    //console.log("new user state: ", );
+    setNutrtionList(data.nutrition);
+    console.log("new user state: ", nutritionList);
 
   }
   const handelLogout = () => {
@@ -154,7 +152,6 @@ function App() {
     setLoginState(false);
     setAppState((prev) => ({ ...prev, isAuthenticated: false }));
   }
-  //const [login, setLogin] = useState({ email: "", password: "" });
   return (
     <div className='app'>
       <BrowserRouter>
@@ -163,9 +160,9 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />} />
             <Route path='/register' element={<Register registerUser={registerUser} />} />
-            <Route path='/login' element={<LoginPage loginUser={loginUser} loginState={loginState} />} />
+            <Route path='/login' element={<LoginPage loginUser={loginUser} loginState={loginState} errorCheck={error} />} />
             <Route path='/activity' element={<ActivityPage appState={appState.isAuthenticated} />} />
-            <Route path='/nutrition/*' element={loginState ? (<NutritionPage appState={appState.isAuthenticated} nutritionEntry={nutritionEntry} user={user} listNutritionhandeler={listNutritionhandeler} nutritionList={nutritionList}/>) : (<></>)} />
+            <Route path='/nutrition/*' element={loginState ? (<NutritionPage appState={appState.isAuthenticated} nutritionEntry={nutritionEntry} user={user} listNutritionhandeler={listNutritionhandeler} nutritionList={nutritionList} />) : (<></>)} />
             <Route path='/*' element={<NotFound />} />
 
 
@@ -180,40 +177,3 @@ function App() {
 
 export default App
 
-/**
- * Replace in useEffect first param if needed
- * 
- * () => {
-    //chekc if the user is logged in 
-    const checkLoggedIn = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        //will decode the token
-
-        const decodedToken = jwtDecode(token);
-        if (decodedToken.exp * 1000 > Date.now()) {
-          const response = await fetch("http://localhost:3001/me", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "authorization": "Bearer " + token
-            },
-            body: JSON.stringify({})
-          });
-          console.log("response: ", response)
-          //since the user is logged in
-          //the other components can now be available to the user
-          setLoginState(true);
-          setAppState((prev) => ({ ...prev, isAuthenticated: true }));
-          //console.log(appState);
-        } else {
-          //set the user to log out
-          handelLogout();
-        }
-      }
-    }
-    checkLoggedIn();
-  }
-
-  ashauns token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJhc2hhdW5AeWFob28uY29tIiwiaWF0IjoxNjg4NjgxMzY0LCJleHAiOjE2OTEyNzMzNjR9.ORq1BUXOA2kZg7pkvE5dWsSTZX96YS_7cDXveEUz7lY
- */
