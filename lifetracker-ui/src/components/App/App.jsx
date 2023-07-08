@@ -36,7 +36,7 @@ function App() {
         //will decode the token
         const decodedToken = jwtDecode(token);
         if (decodedToken.exp * 1000 > Date.now()) {
-          const response = await fetch("http://localhost:3001/auth/me", {
+          const response = await fetch("https://lifetracker-be.onrender.com/auth/me", {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
@@ -64,7 +64,7 @@ function App() {
   //handles when the user registers and sends it to the BE
   const registerUser = async (email, username, first_name, last_name, password, password_confirmation) => {
     try {
-      const response = await fetch("http://localhost:3001/auth/register", {
+      const response = await fetch("https://lifetracker-be.onrender.com/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ function App() {
   //handles when the user logins and sends it to the BE
   const loginUser = async (email, password) => {
     try {
-      const response = await fetch("http://localhost:3001/auth/login", {
+      const response = await fetch("https://lifetracker-be.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -115,7 +115,7 @@ function App() {
   const nutritionEntry = async (name, calories, image_url, category, quantity, user_id) => {
     console.log("THIS IS THE USER ID FROM TABLE: ", user_id)
     try {
-      const response = await fetch("http://localhost:3001/nutrition", {
+      const response = await fetch("https://lifetracker-be.onrender.com/nutrition", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +133,7 @@ function App() {
 
   }
   const listNutritionhandeler = async () => {
-    const response = await fetch(`http://localhost:3001/nutrition/${user.id}`, {
+    const response = await fetch(`https://lifetracker-be.onrender.com/nutrition/${user.id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
