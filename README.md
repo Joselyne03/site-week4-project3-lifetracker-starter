@@ -22,7 +22,7 @@ By the end of this project you will be able to...
 ## Application Features
 
 ## Demo Walk-Through
-![] (LifeTracker_ezgif.gif)
+![] (LifeTracker-ezgif.gif)
 
 
 ### Core Features
