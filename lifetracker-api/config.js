@@ -9,7 +9,7 @@ function getDatabaseUri(){
     const dbHost = process.env.DATABASE_HOST || "localhost"
     const dbPort = process.env.DATABASE_PORT || 5432
     const dbName = process.env.DATABASE_NAME || "lifetracker"
-    return `postgres://postgres_lifetracker_user:LNHkwXhZgxryKrxAohXzTJ6JdjETJlFg@dpg-cikes615rnuvtgvbngeg-a/postgres_lifetracker`
+    return process.env.DATABASE_URL || `postgres://postgres_lifetracker_user:LNHkwXhZgxryKrxAohXzTJ6JdjETJlFg@dpg-cikes615rnuvtgvbngeg-a/postgres_lifetracker`
     //postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}
     // the format is usually: 
     //postgresql://<username>:<password>@<hostname>:<port>/<database-name> 
